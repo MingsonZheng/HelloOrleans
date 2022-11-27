@@ -1,0 +1,31 @@
+﻿@page "/"
+@using Orleans
+@using HelloOrleans.Host.Contract.Entity
+@using HelloOrleans.Host.Contract.Grain
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+职位标题：@Model.Title
+<br/>
+职位描述：@Model.Description
+
+@code
+{
+    [Inject]
+    public IClusterClient ClusterClient { get; set; }
+
+    public Job Model { get; set; } = new Job();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var jobId = "c1eb55ff-74bc-4747-a782-5786cc3cdf80";
+        var jobGrain = ClusterClient.GetGrain<IJobGrain>(jobId);
+        Model = await jobGrain.Get();
+    }
+}
