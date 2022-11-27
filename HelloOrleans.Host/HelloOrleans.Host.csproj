@@ -18,4 +18,8 @@
     <PackageReference Include="Orleans.Providers.MongoDB" Version="3.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HelloOrleans.Contract\HelloOrleans.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

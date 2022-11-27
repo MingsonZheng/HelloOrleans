@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "HelloOrleans.Contract": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
