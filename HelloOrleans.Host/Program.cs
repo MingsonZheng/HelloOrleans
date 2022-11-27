@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseOrleans(silo =>
 {
     silo.UseLocalhostClustering();
-    silo.AddMemoryGrainStorage("hello-orleans");
+    // silo.AddMemoryGrainStorage("hello-orleans");
+    silo.UseMongoDBClient("mongodb://localhost")
+        .AddMongoDBGrainStorage("hello-orleans", options =>
+        {
+            options.DatabaseName = "hello-orleans";
+            options.CollectionPrefix = "";
+        });
 });
 builder.Services.AddControllers();
 
